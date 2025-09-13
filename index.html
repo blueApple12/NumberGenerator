@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Number Generator</title>
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#0b1220" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="topbar" role="banner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <span class="brand-name">Number Generator</span>
+      </div>
+
+      <div class="actions">
+        <div class="theme-switch" role="group" aria-label="Theme">
+          <button id="lightBtn" class="theme-btn" aria-pressed="false" title="Light mode">Light</button>
+          <button id="darkBtn" class="theme-btn is-active" aria-pressed="true" title="Dark mode">Dark</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="shell" role="main">
+      <section class="card" aria-labelledby="resultLabel">
+        <div class="card-header">
+          <h2 id="resultLabel" class="card-title">Result</h2>
+          <div class="pill">Integer 0–9</div>
+        </div>
+
+        <div class="display-wrap">
+          <div id="display" class="display" aria-live="polite" aria-atomic="true">—</div>
+          <button id="copyBtn" class="icon-btn" type="button" aria-label="Copy result" title="Copy">
+            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M16 1H4a3 3 0 0 0-3 3v12h2V4a1 1 0 0 1 1-1h12V1Zm4 4H8a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3Zm1 15a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v12Z" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="controls">
+          <button id="generateBtn" class="btn" type="button" aria-label="Generate number">
+            Generate
+          </button>
+        </div>
+
+        <div class="meta">
+          <span id="status">Ready</span>
+          <span id="timestamp" class="muted"></span>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <small>Keyboard: <kbd>Enter</kbd> or <kbd>Space</kbd> to generate • <kbd>C</kbd> to copy</small>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
