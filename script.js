@@ -1,5 +1,4 @@
-// RNG with covert fixed prefix + theme toggle, mobile-friendly.
-// First presses output fixedSequence, then RNG [0..9].
+// RNG with covert fixed prefix + theme toggle, mobile-friendly (no meta).
 
 const fixedSequence = [9, 4, 6, 5]; // change/extend as needed
 const RANDOM_MIN = 0;
@@ -10,8 +9,6 @@ let idx = 0;
 const displayEl = document.getElementById('display');
 const generateBtn = document.getElementById('generateBtn');
 const copyBtn = document.getElementById('copyBtn');
-const statusEl = document.getElementById('status');
-const tsEl = document.getElementById('timestamp');
 
 // Theme
 const htmlEl = document.documentElement;
@@ -24,36 +21,23 @@ function randint(min, max) {
 
 function nextNumber() {
   if (idx < fixedSequence.length) {
-    const n = fixedSequence[idx];
-    idx += 1;
-    return n;
+    return fixedSequence[idx++];
   }
   return randint(RANDOM_MIN, RANDOM_MAX);
 }
 
 function render(n) {
   displayEl.textContent = String(n);
-  statusEl.textContent = "Generated";
-  tsEl.textContent = new Date().toLocaleTimeString();
 }
 
 function generate() {
-  const n = nextNumber();
-  render(n);
+  render(nextNumber());
 }
 
 function copyToClipboard() {
   const val = displayEl.textContent.trim();
-  if (!val || val === "—") {
-    statusEl.textContent = "Nothing to copy";
-    return;
-  }
-  navigator.clipboard.writeText(val).then(() => {
-    statusEl.textContent = "Copied";
-    setTimeout(() => (statusEl.textContent = "Ready"), 1200);
-  }).catch(() => {
-    statusEl.textContent = "Copy failed";
-  });
+  if (!val || val === "—") return;
+  navigator.clipboard.writeText(val).catch(() => {});
 }
 
 /* Theme handling */
@@ -103,4 +87,3 @@ document.addEventListener('keydown', (e) => {
 
 /* init */
 initTheme();
-statusEl.textContent = "Ready";
